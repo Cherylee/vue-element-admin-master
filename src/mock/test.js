@@ -18,7 +18,7 @@ const res = {
 export default ({ mock }) => {
     if (!mock) return;
 
-    Mock.mock(RegExp(‘/api/android/FZPD/FzIdentNetCard.*‘), ‘post‘, () => {
+    Mock.mock(RegExp('/api/test'), 'post', () => {
         return res;
     });
 }

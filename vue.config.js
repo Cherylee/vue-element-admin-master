@@ -23,7 +23,7 @@ module.exports = {
         proxy: {
             // detail: https://cli.vuejs.org/config/#devserver-proxy
             '/api': {
-                target: process.env.VUE_APP_BASE_API,
+                target: process.env.VUE_APP_BASE_URL,
                 changeOrigin: true,
                 pathRewrite: {
                     ['^/api']: '' //这个理解成用'api'直接代替target配置的地址
@@ -40,12 +40,8 @@ module.exports = {
         }
     },
     chainWebpack: (config) => {
-        config.resolve.alias
-            .set('@', resolve('src'))
-            .set('assets', resolve('@/assets'))
-            .set('components', resolve('@/components'))
-            .set('views', resolve('@/views'));
-        const entry = config.entry("app");
-        entry.add("@/mock").end();
+        const entry = config.entry("app")
+        entry.add("@/mock/test.js").end()
     },
+    lintOnSave: false
 }
