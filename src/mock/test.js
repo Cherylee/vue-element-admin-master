@@ -1,6 +1,6 @@
 import Mock from 'mockjs'
 
-const res = {
+const test = {
     "head": {
         "chanel": "DBK",
         "drbkdt": "20190917",
@@ -15,10 +15,31 @@ const res = {
     },
     "body": ["1"]
 }
+const login = {
+    'data': {
+        'access_token':'12456',
+        'expires_in':'12456'
+    }
+}
+const user = {
+    'user': {
+        'name':'hongcuiling',
+        'avatar':''
+    }
+}
 export default ({ mock }) => {
     if (!mock) return;
 
-    Mock.mock(RegExp('/api/test'), 'post', () => {
-        return res;
+    Mock.mock(RegExp('/test'), 'post', () => {
+        return test;
+    });
+    Mock.mock(RegExp('/login'), 'post', () => {
+        return login;
+    });
+    Mock.mock(RegExp('/getInfo'), 'post', () => {
+        return user;
+    });
+    Mock.mock(RegExp('/logout'), 'delete', () => {
+        return user;
     });
 }

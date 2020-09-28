@@ -1,8 +1,14 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <el-button size="medium" type="primary" style="width:100%;"  @click.native.prevent="getTest" > 888</el-button>
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    首页
+    <el-button
+          size="medium"
+          type="primary"
+          style="width:100%;"
+          @click.native.prevent="logout"
+        >
+         退出登录
+        </el-button>
   </div>
 </template>
 
@@ -10,6 +16,7 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import { test } from "@/api/test";
+import { login } from "@/api/login";
 
 export default {
   name: "Home",
@@ -21,6 +28,26 @@ export default {
       test().then(res => {
         console.log(res);
       });
+    },
+    handlelogin(){
+      this.$store
+            .dispatch("Login", {'username':'admin','password':'123456'})
+            .then(() => {
+              console.log('登陆成功！')
+            })
+            .catch(() => {
+              
+            });
+    },
+    logout(){
+      this.$store
+            .dispatch("LogOut", '')
+            .then(() => {
+              console.log('退出成功！')
+            })
+            .catch(() => {
+              
+            });
     }
   }
 };

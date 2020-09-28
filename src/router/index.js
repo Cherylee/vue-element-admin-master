@@ -11,6 +11,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/login',
+    component: (resolve) => require(['@/views/Login'], resolve),
+    hidden: true
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
